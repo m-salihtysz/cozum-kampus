@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="tr">
+<head>
+<meta charset="utf-8">
+<title>Çözüm Kampüs Tanıtım</title>
+<style>
+  @page { size: 1600px 900px; margin: 0; }
+  :root {
+    --ink: #285a3f; --ink-d: #1f4a33; --accent: #2f7a50; --muted: #66766a; --text: #1c2a21;
+    --tint: #e3ebdc; --bg: #f1f3ec; --card: #fbfcf8; --line: #e3e8dc;
+    --amber-bg: #fbefc9; --amber: #8a5a08; --ok-bg: #dcefd9; --ok: #1f6b3a; --grey-bg: #e8ebe3; --grey: #4a554c;
+    --shadow: 0 24px 60px rgba(40,90,63,.16), 0 2px 6px rgba(40,90,63,.08);
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { background: #dfe4d8; font-family: -apple-system, "SF Pro Display", "Helvetica Neue", Arial, sans-serif; color: var(--text); -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  .slide { width: 1600px; height: 900px; position: relative; overflow: hidden; page-break-after: always; break-after: page;
+    background: radial-gradient(1200px 700px at 85% 10%, #e6eddc 0%, transparent 60%), radial-gradient(900px 600px at 0% 100%, #e2ead8 0%, transparent 55%), var(--bg); }
+  .copy { position: absolute; left: 110px; top: 0; bottom: 0; width: 640px; display: flex; flex-direction: column; justify-content: center; }
+  .copy.right { left: auto; right: 110px; }
+  .kicker { display: inline-flex; align-items: center; gap: 10px; font-size: 20px; font-weight: 600; color: var(--accent); letter-spacing: .02em; margin-bottom: 26px; }
+  .kicker i { width: 34px; height: 34px; border-radius: 12px; background: var(--ink); display: grid; place-items: center; }
+  .kicker svg { width: 20px; height: 20px; fill: #fff; }
+  h1 { font-size: 92px; line-height: 1; letter-spacing: -.035em; font-weight: 700; color: var(--ink); }
+  h2 { font-size: 64px; line-height: 1.04; letter-spacing: -.03em; font-weight: 700; color: var(--ink); }
+  .lead { font-size: 27px; line-height: 1.45; color: var(--muted); margin-top: 28px; max-width: 560px; }
+  .chips { display: flex; flex-wrap: wrap; gap: 12px; margin-top: 34px; }
+  .chip { padding: 12px 22px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); font-size: 20px; font-weight: 600; color: var(--ink); box-shadow: 0 1px 2px rgba(40,90,63,.05); }
+  .chip.dark { background: var(--ink); color: #fff; border-color: var(--ink); }
+  .list { margin-top: 34px; display: grid; gap: 18px; }
+  .list div { display: flex; gap: 16px; align-items: flex-start; font-size: 24px; line-height: 1.35; color: var(--text); }
+  .list b { color: var(--ink); }
+  .list span { flex: none; width: 34px; height: 34px; margin-top: 1px; border-radius: 11px; background: var(--tint); color: var(--ink); display: grid; place-items: center; font-weight: 700; font-size: 18px; }
+  .page { position: absolute; bottom: 40px; left: 110px; font-size: 17px; color: var(--muted); display: flex; gap: 12px; align-items: center; }
+  .page.r { left: auto; right: 110px; }
+  /* ---- phone ---- */
+  .phone { position: absolute; width: 360px; height: 740px; border-radius: 56px; background: var(--card); box-shadow: var(--shadow), 0 0 0 10px #fff, 0 0 0 11px var(--line); overflow: hidden; }
+  .status { height: 62px; padding: 22px 30px 0; display: flex; justify-content: space-between; font-size: 16px; font-weight: 700; }
+  .status em { font-style: normal; letter-spacing: 2px; font-size: 13px; }
+  .scr { padding: 6px 20px 0; }
+  .appbar { display: flex; align-items: center; justify-content: space-between; margin: 6px 0 14px; }
+  .appbar h3 { font-size: 25px; letter-spacing: -.02em; color: var(--ink); }
+  .av { width: 38px; height: 38px; border-radius: 50%; background: linear-gradient(135deg,#9bbf9a,#2f7a50); }
+  .btn { height: 52px; border-radius: 16px; background: var(--ink); color: #fff; display: flex; align-items: center; justify-content: center; gap: 8px; font-weight: 600; font-size: 17px; }
+  .btn.ghost { background: #fff; color: var(--ink); border: 1px solid var(--line); }
+  .card { background: #fff; border: 1px solid var(--line); border-radius: 20px; padding: 14px; box-shadow: 0 1px 2px rgba(40,90,63,.04); }
+  .pill { display: inline-block; padding: 4px 11px; border-radius: 999px; font-size: 12px; font-weight: 700; }
+  .p-am { background: var(--amber-bg); color: var(--amber); } .p-ok { background: var(--ok-bg); color: var(--ok); } .p-gr { background: var(--grey-bg); color: var(--grey); } .p-tn { background: var(--tint); color: var(--ink); }
+  .nav { position: absolute; left: 14px; right: 14px; bottom: 14px; height: 68px; border-radius: 24px; background: #fff; border: 1px solid var(--line); box-shadow: 0 8px 24px rgba(40,90,63,.1); display: flex; justify-content: space-around; align-items: center; font-size: 11px; color: var(--muted); font-weight: 600; }
+  .nav div { display: grid; justify-items: center; gap: 4px; } .nav div.on { color: var(--ink); }
+  .nav svg { width: 24px; height: 24px; fill: currentColor; }
+  .t { font-size: 14px; font-weight: 700; } .s { font-size: 12.5px; color: var(--muted); margin-top: 3px; }
+  .map { position: relative; height: 330px; border-radius: 24px; overflow: hidden; background: #eef2e6; border: 1px solid var(--line); }
+  .pin { position: absolute; width: 34px; height: 34px; border-radius: 50% 50% 50% 4px; transform: rotate(-45deg); background: var(--ink); display: grid; place-items: center; box-shadow: 0 6px 14px rgba(40,90,63,.3); }
+  .pin b { transform: rotate(45deg); color: #fff; font-size: 13px; }
+  .pin.am { background: #c58a12; } .pin.gr { background: #8a958c; }
+  .float { position: absolute; background: #fff; border: 1px solid var(--line); border-radius: 22px; box-shadow: var(--shadow); padding: 18px 22px; }
+  .float .big { font-size: 40px; font-weight: 700; color: var(--ink); letter-spacing: -.03em; }
+  .float .sm { font-size: 16px; color: var(--muted); margin-top: 2px; }
+  .tl { position: relative; padding-left: 26px; display: grid; gap: 15px; margin-top: 8px; }
+  .tl::before { content: ""; position: absolute; left: 8px; top: 6px; bottom: 6px; width: 2px; background: var(--line); }
+  .tl > div { position: relative; } .tl > div::before { content: ""; position: absolute; left: -24px; top: 3px; width: 12px; height: 12px; border-radius: 50%; background: var(--ink); box-shadow: 0 0 0 4px var(--tint); }
+  .tl > div.off::before { background: #cfd8c8; box-shadow: none; }
+  .bar { height: 8px; border-radius: 99px; background: var(--grey-bg); overflow: hidden; margin-top: 8px; } .bar i { display: block; height: 100%; background: var(--ink); border-radius: 99px; }
+  /* ---- desktop ---- */
+  .desk { position: absolute; width: 780px; height: 470px; border-radius: 22px; background: var(--card); box-shadow: var(--shadow), 0 0 0 1px var(--line); overflow: hidden; display: grid; grid-template-columns: 170px 1fr; }
+  .side { background: var(--ink); color: #dfeadb; padding: 22px 16px; display: grid; align-content: start; gap: 8px; font-size: 14px; font-weight: 600; }
+  .side .lg { color: #fff; font-size: 17px; margin-bottom: 14px; } .side div.on { background: rgba(255,255,255,.14); color: #fff; } .side div { padding: 10px 12px; border-radius: 12px; }
+  .main { padding: 22px 24px; }
+  .kpis { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin: 14px 0; }
+  .kpis .card b { display: block; font-size: 28px; color: var(--ink); letter-spacing: -.03em; } .kpis .card span { font-size: 12px; color: var(--muted); }
+  table { width: 100%; border-collapse: collapse; font-size: 13px; } td, th { padding: 9px 6px; border-bottom: 1px solid var(--line); text-align: left; } th { color: var(--muted); font-weight: 600; font-size: 12px; }
+  .grid3 { display: grid; grid-template-columns: repeat(3,1fr); gap: 20px; margin-top: 40px; }
+  .feat { background: var(--card); border: 1px solid var(--line); border-radius: 28px; padding: 30px; box-shadow: 0 1px 2px rgba(40,90,63,.05); }
+  .feat .ic { width: 56px; height: 56px; border-radius: 18px; background: var(--ink); display: grid; place-items: center; margin-bottom: 20px; } .feat .ic svg { width: 30px; height: 30px; fill: #fff; }
+  .feat h4 { font-size: 27px; color: var(--ink); letter-spacing: -.02em; margin-bottom: 10px; } .feat p { font-size: 19px; line-height: 1.5; color: var(--muted); }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute">
+  <symbol id="i-pin" viewBox="0 0 256 256"><path d="M128 16a88.1 88.1 0 0 0-88 88c0 75.3 80 132.2 83.4 134.6a8 8 0 0 0 9.2 0C136 236.2 216 179.3 216 104a88.1 88.1 0 0 0-88-88Zm0 56a32 32 0 1 1-32 32 32 32 0 0 1 32-32Z"/></symbol>
+  <symbol id="i-cam" viewBox="0 0 256 256"><path d="M208 56h-27.5l-9.9-14.8A8 8 0 0 0 164 38H92a8 8 0 0 0-6.6 3.2L75.5 56H48a24 24 0 0 0-24 24v112a24 24 0 0 0 24 24h160a24 24 0 0 0 24-24V80a24 24 0 0 0-24-24Zm-80 120a36 36 0 1 1 36-36 36 36 0 0 1-36 36Z"/></symbol>
+  <symbol id="i-bell" viewBox="0 0 256 256"><path d="M221.8 175.9C216.3 166.5 208 140.4 208 104a80 80 0 1 0-160 0c0 36.4-8.3 62.5-13.8 71.9A16 16 0 0 0 48 200h40a40 40 0 0 0 80 0h40a16 16 0 0 0 13.8-24.1ZM128 224a24 24 0 0 1-24-24h48a24 24 0 0 1-24 24Z"/></symbol>
+  <symbol id="i-home" viewBox="0 0 256 256"><path d="M218.8 103.7 138.8 31a16 16 0 0 0-21.6 0l-80 72.7A16 16 0 0 0 32 115.5V208a16 16 0 0 0 16 16h48a8 8 0 0 0 8-8v-48h48v48a8 8 0 0 0 8 8h48a16 16 0 0 0 16-16v-92.5a16 16 0 0 0-5.2-11.8Z"/></symbol>
+  <symbol id="i-list" viewBox="0 0 256 256"><path d="M224 128a8 8 0 0 1-8 8H40a8 8 0 0 1 0-16h176a8 8 0 0 1 8 8ZM40 72h176a8 8 0 0 0 0-16H40a8 8 0 0 0 0 16Zm176 112H40a8 8 0 0 0 0 16h176a8 8 0 0 0 0-16Z"/></symbol>
+  <symbol id="i-bulb" viewBox="0 0 256 256"><path d="M176 232a8 8 0 0 1-8 8H88a8 8 0 0 1 0-16h80a8 8 0 0 1 8 8Zm40-128a87.6 87.6 0 0 1-33.6 69.2A16.2 16.2 0 0 0 176 186v6a16 16 0 0 1-16 16H96a16 16 0 0 1-16-16v-6a16 16 0 0 0-6.2-12.7A88 88 0 1 1 216 104Z"/></symbol>
+  <symbol id="i-spark" viewBox="0 0 256 256"><path d="m197.6 154.3-45.3-18.6 18.6-45.4a8 8 0 0 0-13-8.7L128 116.5 96.7 89a8 8 0 0 0-13 8.7l18.6 45.4-45.3 18.6a8 8 0 0 0 .2 14.8l45.2 18-18.6 45.4a8 8 0 0 0 13 8.7L128 214.5l31.3 27.5a8 8 0 0 0 13-8.7l-18.6-45.4 45.2-18a8 8 0 0 0 .7-14.6Z"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 256 256"><path d="M208 40H48a16 16 0 0 0-16 16v58.8c0 84.2 71.6 116.1 91.6 123.9a8 8 0 0 0 5.8 0c20-7.8 91.6-39.7 91.6-123.9V56a16 16 0 0 0-16-16Zm-34.3 77.7-48 48a8 8 0 0 1-11.4 0l-24-24a8 8 0 0 1 11.4-11.4L120 148.7l42.3-42.4a8 8 0 0 1 11.4 11.4Z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 256 256"><path d="M224 200h-8V40a8 8 0 0 0-8-8h-64a8 8 0 0 0-8 8v40H96a8 8 0 0 0-8 8v40H48a8 8 0 0 0-8 8v64h-8a8 8 0 0 0 0 16h192a8 8 0 0 0 0-16Z"/></symbol>
+</svg>
+
+<!-- 1. KAPAK -->
+<section class="slide">
+  <div class="copy">
+    <div class="kicker"><i><svg><use href="#i-pin"/></svg></i> Sakarya Üniversitesi için</div>
+    <h1>Çözüm<br>Kampüs</h1>
+    <p class="lead">Kampüsteki sorunu fotoğrafla bildir, yapay zeka doğru birime yönlendirsin, çözülene kadar canlı takip et.</p>
+    <div class="chips"><span class="chip dark">10 saniyede bildir</span><span class="chip">Canlı takip</span><span class="chip">Yapay zeka destekli</span></div>
+  </div>
+
+  <div class="phone" style="left:790px; top:90px; transform: rotate(-3deg);">
+    <div class="status">9:41<em>●●● ▮</em></div>
+    <div class="scr">
+      <div class="appbar"><h3>Kampüs haritası</h3><div class="av"></div></div>
+      <div class="map">
+        <svg width="320" height="330" viewBox="0 0 320 330" style="position:absolute;inset:0">
+          <rect width="320" height="330" fill="#eef2e6"/>
+          <path d="M-10 250 Q90 200 160 230 T340 170" stroke="#fff" stroke-width="22" fill="none"/>
+          <path d="M70 -10 L110 120 L90 340" stroke="#fff" stroke-width="16" fill="none"/>
+          <path d="M-10 90 Q120 70 340 120" stroke="#fff" stroke-width="12" fill="none"/>
+          <rect x="130" y="130" width="70" height="46" rx="10" fill="#dde6d2"/><rect x="215" y="40" width="64" height="50" rx="10" fill="#dde6d2"/><rect x="20" y="140" width="50" height="60" rx="10" fill="#dde6d2"/>
+          <ellipse cx="240" cy="270" rx="48" ry="26" fill="#d6e4dd"/>
+        </svg>
+        <div class="pin" style="left:150px;top:90px"><b>3</b></div>
+        <div class="pin am" style="left:230px;top:120px"><b>1</b></div>
+        <div class="pin" style="left:60px;top:200px"><b>2</b></div>
+        <div class="pin gr" style="left:200px;top:210px"><b>1</b></div>
+      </div>
+      <div class="btn" style="margin-top:16px">+ Yeni bildirim aç</div>
+      <div class="card" style="margin-top:14px"><div class="t">Mühendislik Fak. 2. kat</div><div class="s">Bozuk musluk · <span class="pill p-am">İşlemde</span></div></div>
+    </div>
+    <div class="nav"><div class="on"><svg><use href="#i-home"/></svg>Harita</div><div><svg><use href="#i-list"/></svg>Bildirimlerim</div><div><svg><use href="#i-bulb"/></svg>Öneriler</div><div><svg><use href="#i-bell"/></svg>Haberler</div></div>
+  </div>
+  <div class="float" style="left:1190px; top:210px"><div class="big">3 panel</div><div class="sm">Öğrenci · Personel · Yönetim</div></div>
+  <div class="float" style="left:1210px; top:640px"><div class="big" style="font-size:34px">Alındı → Çözüldü</div><div class="sm">her adımda bildirim</div></div>
+</section>
+
+<!-- 2. BİLDİR -->
+<section class="slide">
+  <div class="phone" style="left:150px; top:80px; transform: rotate(2deg);">
+    <div class="status">9:41<em>●●● ▮</em></div>
+    <div class="scr">
+      <div class="appbar"><h3>Bildir</h3><span class="pill p-tn">Yapay zeka açık</span></div>
+      <div style="display:flex;gap:6px;background:var(--tint);padding:5px;border-radius:16px;font-size:13px;font-weight:700;color:var(--muted);text-align:center">
+        <div style="flex:1;background:#fff;color:var(--ink);padding:9px;border-radius:12px">Fotoğraf</div><div style="flex:1;padding:9px">Yazı</div><div style="flex:1;padding:9px">Ses</div></div>
+      <div style="margin-top:14px;height:170px;border-radius:22px;background:linear-gradient(160deg,#bcd2b8,#6f9a7b);position:relative;overflow:hidden">
+        <svg viewBox="0 0 320 170" width="100%" height="100%"><rect x="120" y="30" width="16" height="90" rx="6" fill="#e9efe6"/><rect x="104" y="24" width="60" height="14" rx="7" fill="#d7dfd3"/><path d="M128 120 q-6 24 4 40" stroke="#bfe0f0" stroke-width="6" fill="none" stroke-linecap="round"/><ellipse cx="136" cy="162" rx="40" ry="8" fill="#a9d1e6"/></svg>
+        <span class="pill p-gr" style="position:absolute;left:12px;bottom:12px;background:#fff">1/3 fotoğraf</span></div>
+      <div class="card" style="margin-top:14px;background:var(--tint);border-color:transparent">
+        <div style="display:flex;gap:6px;align-items:center;color:var(--ink);font-size:12px;font-weight:700"><svg width="16" height="16" fill="currentColor"><use href="#i-spark"/></svg> YAPAY ZEKA ÖNERİSİ</div>
+        <div class="t" style="margin-top:8px;font-size:15px">Bozuk musluk, su akıyor</div>
+        <div style="margin-top:8px;display:flex;gap:6px;flex-wrap:wrap"><span class="pill p-gr" style="background:#fff">Su tesisatı</span><span class="pill p-am">Orta</span><span class="pill p-ok">Yapı İşleri</span></div></div>
+      <div class="card" style="margin-top:14px;display:flex;align-items:center;gap:10px"><svg width="22" height="22" fill="var(--ink)"><use href="#i-pin"/></svg><div><div class="t">Mühendislik Fakültesi</div><div class="s">2. kat · QR ile seçildi</div></div></div>
+      <div class="btn" style="margin-top:14px">Gönder</div>
+    </div>
+    <div class="nav"><div><svg><use href="#i-home"/></svg>Harita</div><div class="on"><svg><use href="#i-cam"/></svg>Bildir</div><div><svg><use href="#i-list"/></svg>Bildirimlerim</div><div><svg><use href="#i-bell"/></svg>Haberler</div></div>
+  </div>
+  <div class="copy right">
+    <div class="kicker"><i><svg><use href="#i-cam"/></svg></i> Öğrenci</div>
+    <h2>Fotoğraf çek,<br>gerisini yapay zeka yapsın</h2>
+    <div class="list">
+      <div><span>1</span><p><b>Fotoğraf, yazı ya da ses</b> ile bildir; konum QR veya haritadan seçilir.</p></div>
+      <div><span>2</span><p>Yapay zeka <b>başlık, kategori, aciliyet ve birimi</b> kendisi önerir.</p></div>
+      <div><span>3</span><p>Uygunsuz görseller ve kişisel veriler <b>gönderilmeden</b> denetlenir.</p></div>
+    </div>
+  </div>
+  <div class="page">Çözüm Kampüs · 02</div>
+</section>
+
+<!-- 3. TAKİP -->
+<section class="slide">
+  <div class="copy">
+    <div class="kicker"><i><svg><use href="#i-bell"/></svg></i> Canlı takip</div>
+    <h2>Bildirimin nerede,<br>her an görürsün</h2>
+    <div class="list">
+      <div><span>✓</span><p><b>Alındı → Yönlendirildi → İşlemde → Çözüldü</b> zaman çizelgesi.</p></div>
+      <div><span>✓</span><p>Her adımda <b>anında bildirim</b>, sayfa yenilemeden.</p></div>
+      <div><span>✓</span><p>Çözüm fotoğrafı yapay zekayla <b>doğrulanır</b>, öğrenci de görür.</p></div>
+    </div>
+  </div>
+  <div class="phone" style="left:870px; top:80px; transform: rotate(-2deg);">
+    <div class="status">9:41<em>●●● ▮</em></div>
+    <div class="scr">
+      <div class="appbar"><h3>Bildirimlerim</h3><div class="av"></div></div>
+      <div class="card"><div style="display:flex;justify-content:space-between"><div class="t">Bozuk musluk</div><span class="pill p-am">İşlemde</span></div><div class="s">Mühendislik Fak. · 2. kat</div>
+        <div class="tl"><div><div class="t" style="font-size:13px">Alındı</div><div class="s" style="margin:0">09:12</div></div><div><div class="t" style="font-size:13px">Yapı İşleri'ne yönlendirildi</div><div class="s" style="margin:0">09:12 · yapay zeka</div></div><div><div class="t" style="font-size:13px">İşleme alındı</div><div class="s" style="margin:0">10:40 · Ahmet (personel)</div></div><div class="off"><div class="t" style="font-size:13px;color:var(--muted)">Çözüldü</div></div></div></div>
+      <div class="card" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div><div class="t">Kantin lambası</div><div class="s">Yemekhane · zemin</div></div><span class="pill p-ok">Çözüldü</span></div>
+      <div class="card" style="margin-top:12px;display:flex;justify-content:space-between;align-items:center"><div><div class="t">Wi-Fi kesik</div><div class="s">Kütüphane · 1. kat</div></div><span class="pill p-gr">Alındı</span></div>
+      <div class="card" style="margin-top:12px;background:var(--tint);border-color:transparent"><div class="t" style="color:var(--ink)">🔔 Bildirimin işleme alındı</div><div class="s">Yapı İşleri · şimdi</div></div>
+    </div>
+    <div class="nav"><div><svg><use href="#i-home"/></svg>Harita</div><div class="on"><svg><use href="#i-list"/></svg>Bildirimlerim</div><div><svg><use href="#i-bulb"/></svg>Öneriler</div><div><svg><use href="#i-bell"/></svg>Haberler</div></div>
+  </div>
+  <div class="float" style="left:1260px; top:610px"><div class="big">Anlık</div><div class="sm">Realtime bildirimler</div></div>
+  <div class="page">Çözüm Kampüs · 03</div>
+</section>
+
+<!-- 4. PERSONEL -->
+<section class="slide">
+  <div class="phone" style="left:150px; top:80px; transform: rotate(2deg);">
+    <div class="status">9:41<em>●●● ▮</em></div>
+    <div class="scr">
+      <div class="appbar"><h3>Bugünkü işler</h3><span class="pill p-tn">Yapı İşleri</span></div>
+      <div class="card" style="border-color:var(--ink)"><div style="display:flex;justify-content:space-between"><div class="t">1 · Bozuk musluk</div><span class="pill p-am">Acil</span></div><div class="s">Mühendislik Fak. 2. kat · 120 m</div>
+        <div class="s" style="margin-top:8px;color:var(--ink);font-weight:600">Önerilen malzeme: musluk başlığı, conta, teflon bant</div>
+        <div style="display:flex;gap:8px;margin-top:12px"><div class="btn" style="flex:1;height:44px;font-size:14px">İşe başla</div><div class="btn ghost" style="flex:1;height:44px;font-size:14px">Devret</div></div></div>
+      <div class="card" style="margin-top:12px"><div style="display:flex;justify-content:space-between"><div class="t">2 · Kırık sıra</div><span class="pill p-gr">Normal</span></div><div class="s">Fen Edebiyat · 3. kat · 310 m</div></div>
+      <div class="card" style="margin-top:12px"><div style="display:flex;justify-content:space-between"><div class="t">3 · Lamba değişimi</div><span class="pill p-gr">Normal</span></div><div class="s">Yemekhane · zemin · 540 m</div></div>
+      <div class="card" style="margin-top:12px"><div style="display:flex;justify-content:space-between"><div class="t">4 · Kapı kilidi</div><span class="pill p-gr">Normal</span></div><div class="s">Rektörlük · 1. kat · 880 m</div></div>
+      <div class="card" style="margin-top:12px;background:var(--tint);border-color:transparent"><div class="t" style="color:var(--ink)">Çözüm fotoğrafı yükle</div><div class="s">Yapay zeka çözümü doğrular</div></div>
+    </div>
+    <div class="nav"><div class="on"><svg><use href="#i-list"/></svg>İşler</div><div><svg><use href="#i-pin"/></svg>Rota</div><div><svg><use href="#i-chart"/></svg>Geçmiş</div><div><svg><use href="#i-bell"/></svg>Haberler</div></div>
+  </div>
+  <div class="copy right">
+    <div class="kicker"><i><svg><use href="#i-list"/></svg></i> Personel</div>
+    <h2>Yapılacak işler,<br>rota sırasıyla</h2>
+    <div class="list">
+      <div><span>1</span><p>Sadece <b>kendi birimine</b> gelen işleri görür.</p></div>
+      <div><span>2</span><p>Gerekli <b>malzeme listesi</b> yapay zekadan hazır gelir.</p></div>
+      <div><span>3</span><p>İşi <b>başka birime devredebilir</b>, çözüm fotoğrafıyla kapatır.</p></div>
+    </div>
+  </div>
+  <div class="page">Çözüm Kampüs · 04</div>
+</section>
+
+<!-- 5. YÖNETİM -->
+<section class="slide">
+  <div class="copy">
+    <div class="kicker"><i><svg><use href="#i-chart"/></svg></i> Yönetim</div>
+    <h2>Kampüsün durumu<br>tek ekranda</h2>
+    <div class="list">
+      <div><span>1</span><p>Bildirimleri <b>filtrele</b>, yayında olmayanı yayınla ya da gizle.</p></div>
+      <div><span>2</span><p><b>Birim performansı</b> ve ortalama çözüm süresi.</p></div>
+      <div><span>3</span><p>Öğrenci önerilerine <b>yapay zekayla taslak yanıt</b>.</p></div>
+    </div>
+  </div>
+  <div class="desk" style="left:780px; top:200px; transform: rotate(-1.5deg);">
+    <div class="side"><div class="lg">Çözüm Kampüs</div><div class="on">Genel bakış</div><div>Bildirimler</div><div>İş takibi</div><div>Birimler</div><div>Raporlar</div></div>
+    <div class="main">
+      <div style="font-size:22px;font-weight:700;color:var(--ink);letter-spacing:-.02em">Genel bakış</div>
+      <div class="kpis"><div class="card"><b>128</b><span>Bu ay bildirim</span></div><div class="card"><b>76%</b><span>Çözüm oranı</span></div><div class="card"><b>1,8 g</b><span>Ort. süre</span></div><div class="card"><b>9</b><span>Bekleyen</span></div></div>
+      <div class="card" style="padding:6px 14px"><table><tr><th>Birim</th><th>Açık</th><th>Çözülen</th><th style="width:150px">Başarı</th></tr>
+        <tr><td>Yapı İşleri</td><td>6</td><td>48</td><td><div class="bar"><i style="width:82%"></i></div></td></tr>
+        <tr><td>Bilgi İşlem</td><td>2</td><td>31</td><td><div class="bar"><i style="width:91%"></i></div></td></tr>
+        <tr><td>Temizlik</td><td>1</td><td>19</td><td><div class="bar"><i style="width:95%"></i></div></td></tr></table></div>
+      <div class="card" style="margin-top:12px;display:flex;align-items:flex-end;gap:10px;height:96px;padding-bottom:12px"><span style="font-size:12px;color:var(--muted);align-self:flex-start">Haftalık bildirim</span><i style="flex:1;height:30%;background:var(--tint);border-radius:6px"></i><i style="flex:1;height:55%;background:var(--tint);border-radius:6px"></i><i style="flex:1;height:40%;background:var(--tint);border-radius:6px"></i><i style="flex:1;height:80%;background:var(--ink);border-radius:6px"></i><i style="flex:1;height:60%;background:var(--tint);border-radius:6px"></i><i style="flex:1;height:35%;background:var(--tint);border-radius:6px"></i><i style="flex:1;height:25%;background:var(--tint);border-radius:6px"></i></div>
+    </div>
+  </div>
+  <div class="float" style="left:730px; top:620px"><div class="big">Yetkili</div><div class="sm">yalnızca yönetim rolü</div></div>
+  <div class="page">Çözüm Kampüs · 05</div>
+</section>
+
+<!-- 6. YAPAY ZEKA & GÜVENLİK -->
+<section class="slide">
+  <div style="position:absolute;left:110px;right:110px;top:140px">
+    <div class="kicker"><i><svg><use href="#i-shield"/></svg></i> Altyapı</div>
+    <h2 style="max-width:1100px">Yapay zeka destekli,<br>güvenli ve ölçeklenebilir</h2>
+    <div class="grid3">
+      <div class="feat"><div class="ic"><svg><use href="#i-spark"/></svg></div><h4>Gemini ile analiz</h4><p>Bildirim sınıflandırma, çözüm fotoğrafı doğrulama ve yanıt taslağı. Servis yanıt vermezse kural tabanlı yedek devreye girer.</p></div>
+      <div class="feat"><div class="ic"><svg><use href="#i-shield"/></svg></div><h4>KVKK ve yetki</h4><p>Satır bazlı yetki (RLS), kişisel verilerin maskelenmesi, fotoğraf EXIF kontrolü, saklama süresi ve hesap silme.</p></div>
+      <div class="feat"><div class="ic"><svg><use href="#i-pin"/></svg></div><h4>Harita ve QR</h4><p>Sakarya Üniversitesi binaları, QR ile yer seçimi, konuma göre rota ve ısı haritası.</p></div>
+    </div>
+    <div class="chips" style="margin-top:44px"><span class="chip dark">Next.js 16</span><span class="chip">React 19</span><span class="chip">Supabase</span><span class="chip">PostgreSQL</span><span class="chip">FastAPI</span><span class="chip">Gemini</span><span class="chip">MapLibre</span></div>
+  </div>
+  <div class="page">Çözüm Kampüs · 06 · github.com/m-salihtysz/cozum-kampus</div>
+</section>
+
+</body>
+</html>

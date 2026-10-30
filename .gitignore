@@ -1,0 +1,21 @@
+node_modules/
+.next/
+.env
+.env.local
+.env.*.local
+.venv/
+__pycache__/
+.pytest_cache/
+.ruff_cache/
+supabase/.temp/
+.DS_Store
+.superpowers/
+.playwright-mcp/
+
+# Yapay zeka asistanı çalışma dosyaları (yalnızca yerelde tutulur)
+CLAUDE.md
+AGENTS.md
+**/AGENTS.md
+docs/durum/
+docs/superpowers/
+.claude/
